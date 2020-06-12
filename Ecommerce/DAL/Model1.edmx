@@ -63,7 +63,7 @@
           <Property Name="IsDelete" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="Description" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductImage" Type="varchar(max)" />
           <Property Name="IsFeatured" Type="bit" />
           <Property Name="Quantity" Type="int" />
@@ -170,7 +170,7 @@
           <Property Name="ProductId" Type="Int32" />
           <Property Name="MemberId" Type="Int32" />
           <Property Name="CartStatusId" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Cart__ProductId__38996AB5" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="ecommerceDBModel.FK__Cart__ProductId__38996AB5" FromRole="Cart" ToRole="Product" />
         </EntityType>
         <EntityType Name="CartStatu">
           <Key>
@@ -187,7 +187,7 @@
           <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__398D8EEE" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="ecommerceDBModel.FK__Product__Categor__398D8EEE" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="MemberRole">
           <Key>
@@ -211,25 +211,6 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ShippingDetails" Relationship="Self.FK__ShippingD__Membe__3A81B327" FromRole="Members" ToRole="ShippingDetails" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CategoryId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="Description" Type="DateTime" Precision="3" />
-          <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IsFeatured" Type="Boolean" />
-          <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__ProductId__38996AB5" FromRole="Product" ToRole="Cart" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__398D8EEE" FromRole="Product" ToRole="Category" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -262,30 +243,6 @@
           <Property Name="SlideTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="SlideImage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK__Cart__ProductId__38996AB5">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__Categor__398D8EEE">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ShippingD__Membe__3A81B327">
           <End Role="Members" Type="Self.Member" Multiplicity="0..1" />
           <End Role="ShippingDetails" Type="Self.ShippingDetail" Multiplicity="*" />
@@ -304,29 +261,72 @@
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="MemberRoles" EntityType="Self.MemberRole" />
           <EntitySet Name="Members" EntityType="Self.Member" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="ShippingDetails" EntityType="Self.ShippingDetail" />
           <EntitySet Name="SlideImages" EntityType="Self.SlideImage" />
-          <AssociationSet Name="FK__Cart__ProductId__38996AB5" Association="Self.FK__Cart__ProductId__38996AB5">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Categor__398D8EEE" Association="Self.FK__Product__Categor__398D8EEE">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
           <AssociationSet Name="FK__ShippingD__Membe__3A81B327" Association="Self.FK__ShippingD__Membe__3A81B327">
             <End Role="Members" EntitySet="Members" />
             <End Role="ShippingDetails" EntitySet="ShippingDetails" />
           </AssociationSet>
+          <EntitySet Name="Products" EntityType="ecommerceDBModel.Product" />
+          <AssociationSet Name="FK__Cart__ProductId__38996AB5" Association="ecommerceDBModel.FK__Cart__ProductId__38996AB5">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Categor__398D8EEE" Association="ecommerceDBModel.FK__Product__Categor__398D8EEE">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsFeatured" Type="Boolean" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Carts" Relationship="ecommerceDBModel.FK__Cart__ProductId__38996AB5" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Category" Relationship="ecommerceDBModel.FK__Product__Categor__398D8EEE" FromRole="Product" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK__Cart__ProductId__38996AB5">
+          <End Type="ecommerceDBModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ecommerceDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Categor__398D8EEE">
+          <End Type="ecommerceDBModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="ecommerceDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ecommerceDBModelStoreContainer" CdmEntityContainer="ecommerceDBEntities">
+        <EntityContainerMapping CdmEntityContainer="ecommerceDBEntities" StorageEntityContainer="ecommerceDBModelStoreContainer">
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="ecommerceDBModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -379,24 +379,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="ecommerceDBModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
-                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="ecommerceDBModel.Role">
               <MappingFragment StoreEntitySet="Roles">
@@ -427,6 +409,24 @@
                 <ScalarProperty Name="SlideId" ColumnName="SlideId" />
                 <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
                 <ScalarProperty Name="SlideImage1" ColumnName="SlideImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ecommerceDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

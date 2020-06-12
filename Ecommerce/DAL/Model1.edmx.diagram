@@ -10,13 +10,13 @@
         <EntityTypeShape EntityType="ecommerceDBModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.MemberRole" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.Member" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ecommerceDBModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.Role" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.ShippingDetail" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.SlideImage" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="ecommerceDBModel.FK__Cart__ProductId__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="ecommerceDBModel.FK__Product__Categor__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="ecommerceDBModel.FK__ShippingD__Membe__3A81B327" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ecommerceDBModel.Product" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="ecommerceDBModel.FK__Cart__ProductId__38996AB5" />
+        <AssociationConnector Association="ecommerceDBModel.FK__Product__Categor__398D8EEE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,4 +1,5 @@
 ﻿using Ecommerce.DAL;
+using Ecommerce.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -117,6 +118,11 @@ namespace OnlineShoppingStore.Repository
             {
                 return _dbSet.OrderBy(orderByPredict).ToList();
             }
+        }
+
+        public IEnumerable<Entity> GetProduct()
+        {
+            return _dbSet.ToList();
         }
     }
 }

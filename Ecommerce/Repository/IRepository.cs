@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace OnlineShoppingStore.Repository
+namespace Ecommerce.Repository
 {
     public interface IRepository<Entity> where Entity : class
     {
@@ -23,6 +23,7 @@ namespace OnlineShoppingStore.Repository
         IEnumerable<Entity> GetListParameter(Expression<Func<Entity, bool>> wherePredict);
         IEnumerable<Entity> GetResultBySqlprocedure(string query, params object[] parameters);
         IEnumerable<Entity> GetRecordsToShow(int PageNo, int PageSize, int CurrentPage, Expression<Func<Entity, bool>> wherePredict, Expression<Func<Entity, int>> orderByPredict);
-
+        IEnumerable<Entity> GetProduct();
+        
     }
 }
