@@ -227,6 +227,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryDetail.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
+    <Compile Include="Models\Home\Item.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Shopping.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Images\85_05_20_2018_11_20_09.jpg" />
     <Content Include="Images\86_05_20_2018_11_24_43.jpg" />
     <Content Include="Images\searchIcon.png" />
+    <Content Include="Images\white_shirt.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DAL\Model1.edmx">

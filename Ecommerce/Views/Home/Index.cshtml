@@ -1,6 +1,8 @@
 ﻿@model Ecommerce.Models.Home.HomeIndexViewModel
 @using PagedList;
 @using PagedList.Mvc;
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -82,8 +84,11 @@
                     <p>
                         @if (item.Quantity > 0)
                         {
+                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId }, FormMethod.Post))
+                            {
+                                <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                            }
                         <p>Available</p>
-
                     }
                     else
                     {
