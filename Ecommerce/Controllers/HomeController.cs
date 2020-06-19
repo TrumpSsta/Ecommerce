@@ -24,6 +24,46 @@ namespace Ecommerce.Controllers
 
             return View();
         }
+
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+
+
+
+
+        public ActionResult CheckoutDetails()
+        {
+            return View();
+        }
+        public ActionResult DecreaseQty(int productId)
+        {
+            if (Session["cart"] != null)
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                var product = ctx.Products.Find(productId);
+                foreach (var item in cart)
+                {
+                    if (item.Product.ProductId == productId)
+                    {
+                        int prevQty = item.Quantity;
+                        if (prevQty > 0)
+                        {
+                            cart.Remove(item);
+                            cart.Add(new Item()
+                            {
+                                Product = product,
+                                Quantity = prevQty - 1
+                            });
+                        }
+                        break;
+                    }
+                }
+                Session["cart"] = cart;
+            }
+            return Redirect("Checkout");
+        }
         public ActionResult AddToCart(int productId)
         {
             if (Session["cart"] == null)
