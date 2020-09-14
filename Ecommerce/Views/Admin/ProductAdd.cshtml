@@ -7,10 +7,9 @@
 
 <h2>ProductAdd</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("ProductAdd","Admin", FormMethod.Post, new { entcype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />

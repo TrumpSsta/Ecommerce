@@ -99,6 +99,7 @@ namespace OnlineShoppingStore.Repository
         {
             _dbSet.Attach(entity);
             _DBEntity.Entry(entity).State = EntityState.Modified;
+            _DBEntity.SaveChanges();
         }
 
         public void UpdateByWhereClause(Expression<Func<Entity, bool>> wherePredict, Action<Entity> ForEachPredict)

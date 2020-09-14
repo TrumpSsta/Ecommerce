@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace OnlineShoppingStore.Controllers
 {
@@ -78,10 +79,22 @@ namespace OnlineShoppingStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProductEdit(Product tbl)
+        public ActionResult ProductEdit(Product tbl, HttpPostedFileBase file)
         {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/ProductImg/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            tbl.ProductImage = file != null ? pic : tbl.ProductImage;
+            tbl.ModifiedDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<Product>().Update(tbl);
             return RedirectToAction("Product");
+            //_unitofwork.getrepositoryinstance<product>().update(tbl);
+            //return redirecttoaction("product");
         }
         public ActionResult ProductAdd()
         {
