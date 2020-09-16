@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="33bbe3128c9a48b188014cc7dd5d2ed5" Name="Diagram1">
         <EntityTypeShape EntityType="ecommerceDBModel.Cart" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ecommerceDBModel.CartStatu" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceDBModel.CartStatu" Width="1.5" PointX="8.375" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.MemberRole" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecommerceDBModel.Member" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
