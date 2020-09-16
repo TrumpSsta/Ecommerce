@@ -1,5 +1,6 @@
 ﻿using Ecommerce.DAL;
 using Ecommerce.Models.Home;
+using Ecommerce.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Ecommerce.Controllers
     public class HomeController : Controller
     {
         ecommerceDBEntities ctx = new ecommerceDBEntities();
-
+        public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
         public ActionResult Index(string search, int? page)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
@@ -36,6 +37,11 @@ namespace Ecommerce.Controllers
         public ActionResult CheckoutDetails()
         {
             return View();
+        }
+
+        public ActionResult ProductDetails(int productId )
+        {
+            return View(_unitOfWork.GetRepositoryInstance<Product>().GetFirstorDefault(productId));
         }
         public ActionResult DecreaseQty(int productId)
         {

@@ -73,10 +73,14 @@
     {
         <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
             <div class="thumbnail product-item" style="height:300px">
+                <td>
 
-                <img class="img-responsive" title="Click to View Product detail"
+                    @Html.ActionLink("hidden View Product", "ProductDetails", new { productId = item.ProductId })
+                    <img class="img-responsive" title="Click to View Product detail"
                      style="cursor:pointer;height:160px;width:100%"
                      src="~/ProductImg/@item.ProductImage" />
+                </td>
+                
 
                 <div class="caption">
                     <h5>@item.ProductName</h5>
@@ -94,7 +98,7 @@
                     {
                         <p>Not Available</p>
                     }
-                        </p>
+
                         <div class="product-item-badge">
                             @if (item.IsFeatured == true)
                             {
