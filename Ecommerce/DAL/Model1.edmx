@@ -68,6 +68,8 @@
           <Property Name="IsFeatured" Type="bit" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductImage2" Type="varchar" MaxLength="255" />
+          <Property Name="ProductImage3" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -296,6 +298,8 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Carts" Relationship="ecommerceDBModel.FK__Cart__ProductId__38996AB5" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Category" Relationship="ecommerceDBModel.FK__Product__Categor__398D8EEE" FromRole="Product" ToRole="Category" />
+          <Property Name="ProductImage2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImage3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Cart__ProductId__38996AB5">
           <End Type="ecommerceDBModel.Product" Role="Product" Multiplicity="0..1" />
@@ -415,6 +419,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ecommerceDBModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductImage3" ColumnName="ProductImage3" />
+                <ScalarProperty Name="ProductImage2" ColumnName="ProductImage2" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />

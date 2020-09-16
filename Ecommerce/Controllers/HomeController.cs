@@ -70,7 +70,7 @@ namespace Ecommerce.Controllers
             }
             return Redirect("Checkout");
         }
-        public ActionResult AddToCart(int productId)
+        public ActionResult AddToCart(int productId, string url)
         {
             if (Session["cart"] == null)
             {
@@ -111,7 +111,7 @@ namespace Ecommerce.Controllers
                 }
                 Session["cart"] = cart;
             }
-            return Redirect("Index");
+            return Redirect(url);
         }
         public ActionResult RemoveFromCart(int productId)
         {
